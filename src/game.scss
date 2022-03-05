@@ -1,0 +1,113 @@
+body {
+  background-color: #f0f0f0;
+  font-family: "Helvetica Neue", sans-serif;
+}
+
+.container {
+  width: 800px;
+  margin: 0 auto;
+}
+
+// KEYBOARD
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  width: 66%;
+
+  .keyboard-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+  }
+
+  button {
+    display: flex;
+    flex: 1 1;
+    font-size: 1.25em;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    border-radius: 0.125em;
+    background: #ddd;
+    color: #111;
+    border: 1px solid #888;
+    cursor: pointer;
+    outline: none;
+    line-height: 2em;
+
+    &.wide {
+      flex: 2 1;
+    }
+  }
+}
+
+td {
+  border: 2px solid #333;
+  padding: 0;
+  width: 4em;
+  height: 4em;
+}
+
+.letter {
+  display: block;
+  text-transform: uppercase;
+  font-size: 3em;
+  min-width: 100%;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.correct,
+.move,
+.incorrect {
+  position: relative;
+}
+
+.correct::after,
+.move::after,
+.incorrect::after {
+  font-size: 0.75em;
+  position: absolute;
+  top: -0.6666em;
+  right: -0.5em;
+  transform: rotate(-45deg) scale(0);
+  z-index: 10;
+  opacity: 0;
+}
+
+.correct.final::after,
+.move.final::after,
+.incorrect.final::after {
+  transform: rotate(45deg) scale(1);
+  opacity: 0.95;
+  transition: opacity 0.333s ease-in-out, transform 0.333s ease-in-out;
+}
+
+.correct {
+  background-color: green;
+}
+
+.correct::after {
+  content: "😻";
+}
+
+.move {
+  background-color: yellow;
+}
+
+.move::after {
+  content: "😸";
+}
+
+.incorrect {
+  background-color: gray;
+}
+
+.incorrect::after {
+  content: "";
+}
+
+.hidden {
+  display: none;
+}

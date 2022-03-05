@@ -1,6 +1,5 @@
 module.exports = {
   extends: [
-    "plugin:jest/recommended",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier",
@@ -21,12 +20,7 @@ module.exports = {
       jsx: true,
     },
   },
-  plugins: [
-    "jest",
-    "sort-imports-es6-autofix",
-    "@typescript-eslint",
-    "prettier",
-  ],
+  plugins: ["sort-imports-es6-autofix", "@typescript-eslint", "prettier"],
   settings: {
     "import/parsers": {
       "@typescript-eslint/parser": [".ts", ".tsx"],
