@@ -57,6 +57,7 @@ export const Keyboard: React.FC<KeyboardProps> = ({
   onBackspaceKey,
   onEnterKey,
 }) => {
+  // listen for actual keyboard events
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
       if (e.ctrlKey || e.metaKey) {
@@ -79,6 +80,7 @@ export const Keyboard: React.FC<KeyboardProps> = ({
     return () => document.removeEventListener("keydown", listener);
   }, [onLetterKey, onBackspaceKey, onEnterKey]);
 
+  // render a good-enough keyboard
   return (
     <div className="keyboard">
       {KEYBOARD_LAYOUT.map((row, i) => (

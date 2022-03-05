@@ -102,3 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+# ParcelJS -- first time I've ever used this bundler
+.parcel-cache/
