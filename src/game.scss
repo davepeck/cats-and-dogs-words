@@ -28,7 +28,8 @@ body {
 }
 
 .container {
-  width: 800px;
+  width: 100%;
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -84,7 +85,7 @@ body {
     font-size: 1.3333em;
     position: absolute;
     top: -0.625em;
-    right: -0.3em;
+    right: -0.325em;
     transform: rotate(-45deg) scale(0);
     z-index: 10;
     opacity: 0;

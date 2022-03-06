@@ -34,12 +34,14 @@ export const App: React.FC = () => {
         <Row length={5} state="future" word="" clues={[]} />
         <Row length={5} state="future" word="" clues={[]} />
       </Grid>
-      <Keyboard
-        letterClues={{ a: "incorrect", b: "correct", c: "move" }}
-        onLetterKey={() => {}}
-        onBackspaceKey={() => {}}
-        onEnterKey={() => {}}
-      />
+      <div style={{ marginTop: "2em" }}>
+        <Keyboard
+          letterClues={{ a: "incorrect", b: "correct", c: "move" }}
+          onLetterKey={() => {}}
+          onBackspaceKey={() => {}}
+          onEnterKey={() => {}}
+        />
+      </div>
     </div>
   );
 };
