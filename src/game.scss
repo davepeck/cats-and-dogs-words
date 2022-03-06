@@ -1,5 +1,25 @@
 // --------------------------------------------------------------------------
-// Top-level layout for the game.
+// Constants! In CSS! The future is here!
+// --------------------------------------------------------------------------
+
+:root {
+  --correct-bg: forestgreen;
+  --correct-fg: #eee;
+  --correct-border: forestgreen;
+  --move-bg: goldenrod;
+  --move-fg: #eee;
+  --move-border: goldenrod;
+  --incorrect-bg: #666;
+  --incorrect-fg: #eee;
+  --incorrect-border: #666;
+  --unknown-bg: #ddd;
+  --unknown-fg: #333;
+  --unknown-border: #aaa;
+  --active-color: DarkSlateBlue;
+}
+
+// --------------------------------------------------------------------------
+// Top-level styles for the site.
 // --------------------------------------------------------------------------
 
 body {
@@ -12,11 +32,83 @@ body {
   margin: 0 auto;
 }
 
-h6 {
+.subtitle {
   font-weight: 400;
   color: #333;
   padding-top: 0;
   margin-top: -2em;
+}
+
+// --------------------------------------------------------------------------
+// Clue Colors
+// --------------------------------------------------------------------------
+
+.correct {
+  background-color: var(--correct-bg) !important;
+  color: var(--correct-fg) !important;
+  border: 2px solid var(--correct-border) !important;
+}
+
+.move {
+  background-color: var(--move-bg) !important;
+  color: var(--move-fg) !important;
+  border: 2px solid var(--move-border) !important;
+}
+
+.incorrect {
+  background-color: var(--incorrect-bg) !important;
+  color: var(--incorrect-fg) !important;
+  border: 2px solid var(--incorrect-border) !important;
+}
+
+.unknown {
+  background-color: var(--unknown-bg) !important;
+  color: var(--unknown-fg) !important;
+  border: 2px solid var(--unknown-border) !important;
+}
+
+// --------------------------------------------------------------------------
+// Clue Cats! (Nortofni42)
+// --------------------------------------------------------------------------
+
+.grid {
+  .correct,
+  .move,
+  .incorrect {
+    position: relative;
+  }
+
+  .correct::after,
+  .move::after,
+  .incorrect::after {
+    font-size: 1.3333em;
+    position: absolute;
+    top: -0.625em;
+    right: -0.3em;
+    transform: rotate(-45deg) scale(0);
+    z-index: 10;
+    opacity: 0;
+  }
+
+  .correct.final::after,
+  .move.final::after,
+  .incorrect.final::after {
+    transform: rotate(45deg) scale(1);
+    opacity: 0.95;
+    transition: opacity 0.333s ease-in-out, transform 0.333s ease-in-out;
+  }
+
+  .correct::after {
+    content: "😻";
+  }
+
+  .move::after {
+    content: "😸";
+  }
+
+  .incorrect::after {
+    content: "";
+  }
 }
 
 // --------------------------------------------------------------------------
@@ -27,23 +119,22 @@ h6 {
   display: flex;
   flex-direction: column;
   width: 66%;
+  font-weight: 300;
 
-  .keyboard-row {
+  .row {
     display: flex;
     flex-direction: row;
     justify-content: stretch;
   }
 
-  button {
+  .key {
     display: flex;
     flex: 1 1;
     font-size: 1.25em;
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
-    border-radius: 0.125em;
-    background: #ddd;
-    color: #111;
+    border-radius: 0.16666em;
     border: 1px solid #888;
     cursor: pointer;
     outline: none;
@@ -56,75 +147,65 @@ h6 {
 }
 
 // --------------------------------------------------------------------------
-// nortofni42
+// Solution grid
 // --------------------------------------------------------------------------
 
-td {
-  border: 2px solid #333;
-  padding: 0;
-  width: 4em;
-  height: 4em;
+.grid {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
+  font-weight: 900;
+  font-size: 2em;
+  line-height: 2em;
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    margin-bottom: 0.2em;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .cell {
+    margin-right: 0.2em;
+    display: flex;
+    flex: 1 1;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    outline: none;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 }
 
-.letter {
-  display: block;
-  text-transform: uppercase;
-  font-size: 3em;
-  min-width: 100%;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-}
+// --------------------------------------------------------------------------
+// Older nonsense
+// --------------------------------------------------------------------------
 
-.correct,
-.move,
-.incorrect {
-  position: relative;
-}
+// td {
+//   border: 2px solid #333;
+//   padding: 0;
+//   width: 4em;
+//   height: 4em;
+// }
 
-.correct::after,
-.move::after,
-.incorrect::after {
-  font-size: 0.75em;
-  position: absolute;
-  top: -0.6666em;
-  right: -0.5em;
-  transform: rotate(-45deg) scale(0);
-  z-index: 10;
-  opacity: 0;
-}
-
-.correct.final::after,
-.move.final::after,
-.incorrect.final::after {
-  transform: rotate(45deg) scale(1);
-  opacity: 0.95;
-  transition: opacity 0.333s ease-in-out, transform 0.333s ease-in-out;
-}
-
-.correct {
-  background-color: green;
-}
-
-.correct::after {
-  content: "😻";
-}
-
-.move {
-  background-color: yellow;
-}
-
-.move::after {
-  content: "😸";
-}
-
-.incorrect {
-  background-color: gray;
-}
-
-.incorrect::after {
-  content: "";
-}
+// .letter {
+//   display: block;
+//   text-transform: uppercase;
+//   font-size: 3em;
+//   min-width: 100%;
+//   width: 100%;
+//   height: 100%;
+//   text-align: center;
+// }
 
 .hidden {
   display: none;

@@ -1,5 +1,11 @@
 /** The funamental available clues. */
-export type Clue = "correct" | "move" | "incorrect";
+export type Clue =
+  /** Letter is in correct position. */
+  | "correct"
+  /** Letter is in solution, but positioned incorrectly. */
+  | "move"
+  /** Letter is not in solution. */
+  | "incorrect";
 
 /** Mapping from all alphabet letters to a clue, if one exists. */
 export type LetterClues = { [letter: string]: Clue | undefined };
@@ -34,3 +40,6 @@ export const getClues = (word: string, secret: string): Clue[] => {
 
   return clues;
 };
+
+/** Return CSS class name for clue (or unknown). */
+export const getClueClass = (clue?: Clue): string => clue ?? "unknown";

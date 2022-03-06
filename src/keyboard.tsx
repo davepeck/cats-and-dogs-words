@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { ALPHABET } from "./alphabet";
-import type { LetterClues } from "./clue";
+import { getClueClass, LetterClues } from "./clue";
 import clsx from "clsx";
 
 /** Known key types. */
@@ -53,6 +53,7 @@ export interface KeyboardProps {
 
 /** The primary keyboard component. */
 export const Keyboard: React.FC<KeyboardProps> = ({
+  letterClues,
   onLetterKey,
   onBackspaceKey,
   onEnterKey,
@@ -84,7 +85,7 @@ export const Keyboard: React.FC<KeyboardProps> = ({
   return (
     <div className="keyboard">
       {KEYBOARD_LAYOUT.map((row, i) => (
-        <div className="keyboard-row" key={`keyboard-row-${i}`}>
+        <div className="row" key={`keyboard-row-${i}`}>
           {row.split("").map((key, j) => {
             const keyType = getKeyType(key);
             const clickHandler = selectForKeyType(
@@ -95,7 +96,11 @@ export const Keyboard: React.FC<KeyboardProps> = ({
             );
             return (
               <button
-                className={clsx("keyboard-key", keyType !== "letter" && "wide")}
+                className={clsx(
+                  "key",
+                  keyType !== "letter" && "wide",
+                  getClueClass(letterClues[key])
+                )}
                 key={`keyboard-key-${key}`}
                 onClick={() => clickHandler(key)}
               >

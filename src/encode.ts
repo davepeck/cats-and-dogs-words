@@ -1,4 +1,5 @@
 import { ALPHABET } from "./alphabet";
+import { isWord } from "./dictionary";
 
 /** Mod op that has a reasonable behavior for negative values. */
 const mod = (a: number, modulus: number): number =>
@@ -24,6 +25,19 @@ export const decodeSecret = (encoded: string): string =>
     .join("");
 
 /**
+ * Decode a secret that was shared.
+ *
+ * In addition, validate the decoded secret against our dictionary;
+ * return undefined if the secret is invalid.
+ */
+export const decodeSecretAndValidate = (
+  encoded: string
+): string | undefined => {
+  const decoded = decodeSecret(encoded);
+  return isWord(decoded) ? decoded : undefined;
+};
+
+/**
  * Encode a secret so it can be shared.
  *
  * Takes a word like KITTY and turns it into nonsense
@@ -35,3 +49,19 @@ export const encodeSecret = (secret: string): string =>
     .split("")
     .map((c, i) => alterLetter(c, i, "encode"))
     .join("");
+
+/** Get secret from the URL, if any, and decode it. */
+export const getSecretFromURL = (): string | undefined => {
+  const searchParams = new URLSearchParams(window.location.search);
+  const secret = searchParams.get("w");
+  return secret ? decodeSecretAndValidate(secret) : undefined;
+};
+
+/** Encode secret into the current URL and return the updated URL. */
+export const getURLFromSecret = (secret: string): string => {
+  const url = new URL(window.location.href);
+  // clear extant query param, if any.
+  url.searchParams.delete("w");
+  url.searchParams.append("w", encodeSecret(secret));
+  return url.toString();
+};
