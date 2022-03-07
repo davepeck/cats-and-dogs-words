@@ -24,13 +24,24 @@
 
 body {
   background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
   font-family: "Helvetica Neue", sans-serif;
+}
+
+div {
+  margin: 0;
+  padding: 0;
 }
 
 .container {
   width: 100%;
-  max-width: 800px;
   margin: 0 auto;
+}
+
+.title,
+.subtitle {
+  text-align: center;
 }
 
 .subtitle {
@@ -38,6 +49,13 @@ body {
   color: #333;
   padding-top: 0;
   margin-top: -2em;
+  margin-bottom: 3em;
+}
+
+@media only screen and (min-width: 800px) {
+  .container {
+    width: 800px;
+  }
 }
 
 // --------------------------------------------------------------------------
@@ -119,30 +137,53 @@ body {
 .keyboard {
   display: flex;
   flex-direction: column;
-  width: 66%;
-  font-weight: 300;
+  padding: 0;
+  margin: 0 0.35em 0 0.35em;
 
   .row {
     display: flex;
     flex-direction: row;
     justify-content: stretch;
+    padding: 0;
+    margin: 0 0 0.25em 0;
   }
 
   .key {
     display: flex;
-    flex: 1 1;
+    padding: 0 0.125em 0 0.125em;
+    margin: 0 0.25em 0 0;
+    border-width: 1px !important;
+    flex: 1;
+    font-weight: 500;
     font-size: 1.25em;
+    line-height: 2em;
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
     border-radius: 0.16666em;
-    border: 1px solid #888;
     cursor: pointer;
     outline: none;
-    line-height: 2em;
 
     &.wide {
-      flex: 2 1;
+      flex: 2;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .keyboard {
+    width: 66%;
+    margin: 0 auto;
+
+    .key {
+      flex: 1;
+      font-weight: 400;
+      font-size: 1.25em;
+      line-height: 2em;
     }
   }
 }
@@ -154,11 +195,9 @@ body {
 .grid {
   display: flex;
   flex-direction: column;
-  width: 50%;
-  margin: 0 auto;
   font-weight: 900;
-  font-size: 2em;
-  line-height: 2em;
+  width: 80%;
+  margin: 0 auto;
 
   .row {
     display: flex;
@@ -181,8 +220,24 @@ body {
     cursor: pointer;
     outline: none;
 
+    font-size: 1.5em;
+    font-weight: 900;
+    line-height: 2em;
+
     &:last-child {
       margin-right: 0;
+    }
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .grid {
+    width: 50%;
+
+    .cell {
+      font-size: 2em;
+      font-weight: 900;
+      line-height: 2em;
     }
   }
 }
