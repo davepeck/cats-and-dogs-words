@@ -86,7 +86,7 @@ export const Keyboard: React.FC<KeyboardProps> = ({
     <div className="keyboard">
       {KEYBOARD_LAYOUT.map((row, i) => (
         <div className="row" key={`keyboard-row-${i}`}>
-          {row.split("").map((key, j) => {
+          {row.split("").map((key) => {
             const keyType = getKeyType(key);
             const clickHandler = selectForKeyType(
               keyType,

@@ -15,7 +15,7 @@
   --unknown-bg: #ddd;
   --unknown-fg: #333;
   --unknown-border: #aaa;
-  --active-color: DarkSlateBlue;
+  --active-color: darkslateblue;
 }
 
 // --------------------------------------------------------------------------
@@ -87,50 +87,6 @@ div {
 }
 
 // --------------------------------------------------------------------------
-// Clue Cats! (Nortofni42)
-// --------------------------------------------------------------------------
-
-.grid {
-  .correct,
-  .move,
-  .incorrect {
-    position: relative;
-  }
-
-  .correct::after,
-  .move::after,
-  .incorrect::after {
-    font-size: 1.3333em;
-    position: absolute;
-    top: -0.625em;
-    right: -0.325em;
-    transform: rotate(-45deg) scale(0);
-    z-index: 10;
-    opacity: 0;
-  }
-
-  .correct.final::after,
-  .move.final::after,
-  .incorrect.final::after {
-    transform: rotate(45deg) scale(1);
-    opacity: 0.95;
-    transition: opacity 0.333s ease-in-out, transform 0.333s ease-in-out;
-  }
-
-  .correct::after {
-    content: "😻";
-  }
-
-  .move::after {
-    content: "😸";
-  }
-
-  .incorrect::after {
-    content: "";
-  }
-}
-
-// --------------------------------------------------------------------------
 // Keyboard fun!
 // --------------------------------------------------------------------------
 
@@ -138,19 +94,19 @@ div {
   display: flex;
   flex-direction: column;
   padding: 0;
-  margin: 0 0.35em 0 0.35em;
+  margin: 0 0.5em;
 
   .row {
     display: flex;
     flex-direction: row;
     justify-content: stretch;
     padding: 0;
-    margin: 0 0 0.25em 0;
+    margin: 0 0 0.25em;
   }
 
   .key {
     display: flex;
-    padding: 0 0.125em 0 0.125em;
+    padding: 0 0.125em;
     margin: 0 0.25em 0 0;
     border-width: 1px !important;
     flex: 1;
@@ -160,7 +116,7 @@ div {
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
-    border-radius: 0.16666em;
+    border-radius: 0.1667em;
     cursor: pointer;
     outline: none;
 
@@ -213,13 +169,12 @@ div {
   .cell {
     margin-right: 0.2em;
     display: flex;
-    flex: 1 1;
+    flex: 1;
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
     cursor: pointer;
     outline: none;
-
     font-size: 1.5em;
     font-weight: 900;
     line-height: 2em;
@@ -239,6 +194,53 @@ div {
       font-weight: 900;
       line-height: 2em;
     }
+  }
+}
+
+// --------------------------------------------------------------------------
+// Clue Cats! (Nortofni42)
+// --------------------------------------------------------------------------
+
+/* stylelint-disable no-duplicate-selectors */
+.grid {
+  /* stylelint-enable no-duplicate-selectors */
+
+  .correct,
+  .move,
+  .incorrect {
+    position: relative;
+  }
+
+  .correct::after,
+  .move::after,
+  .incorrect::after {
+    font-size: 1.3333em;
+    position: absolute;
+    top: -0.625em;
+    right: -0.325em;
+    transform: rotate(-45deg) scale(0);
+    z-index: 10;
+    opacity: 0;
+  }
+
+  .correct.final::after,
+  .move.final::after,
+  .incorrect.final::after {
+    transform: rotate(45deg) scale(1);
+    opacity: 0.95;
+    transition: opacity 0.333s ease-in-out, transform 0.333s ease-in-out;
+  }
+
+  .correct::after {
+    content: "😻";
+  }
+
+  .move::after {
+    content: "😸";
+  }
+
+  .incorrect::after {
+    content: "";
   }
 }
 

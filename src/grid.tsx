@@ -6,9 +6,10 @@ export type RowState /** Row was completed and clued. */ =
   | "past"
   /** Row is actively receiving keypresses. */
   | "present"
-  /** Row has yet to be used. */
+  /** Row has yet to be provided. */
   | "future";
 
+/** Props to the Row component. */
 export interface RowProps {
   /** The number of letters to display in this row. */
   length: number;
@@ -20,16 +21,17 @@ export interface RowProps {
   word: string;
 
   /** The current clues, if any, for this row. */
-  clues: (Clue | undefined)[];
+  clues?: Clue[];
 }
 
+/** A row of cells in the grid. */
 export const Row: React.FC<RowProps> = (props) => {
   return (
     <div className="row">
       {[...Array(props.length)].map((_, index) => (
         <div
           key={index}
-          className={clsx("cell", "final", getClueClass(props.clues[index]))}
+          className={clsx("cell", "final", getClueClass(props.clues?.[index]))}
         >
           {props.word[index] ?? "\xa0"}
         </div>
@@ -38,6 +40,7 @@ export const Row: React.FC<RowProps> = (props) => {
   );
 };
 
+/** A grid of rows. */
 export const Grid: React.FC = ({ children }) => (
   <div className="grid">{children}</div>
 );

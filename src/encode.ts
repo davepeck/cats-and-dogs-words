@@ -9,7 +9,7 @@ const mod = (a: number, modulus: number): number =>
 const alterLetter = (c: string, i: number, op: "encode" | "decode"): string => {
   const gap = i * 7 + 3;
   const index = ALPHABET.indexOf(c);
-  let opIndex = op === "encode" ? index + gap : index - gap;
+  const opIndex = op === "encode" ? index + gap : index - gap;
   return ALPHABET[mod(opIndex, ALPHABET.length)];
 };
 
