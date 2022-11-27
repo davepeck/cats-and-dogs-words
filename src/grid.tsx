@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { getClueClass } from "./clue";
 import type { Clue } from "./clue";
+import React from "react";
 
 export type RowState /** Row was completed and clued. */ =
   | "past"
@@ -41,6 +42,6 @@ export const Row: React.FC<RowProps> = (props) => {
 };
 
 /** A grid of rows. */
-export const Grid: React.FC = ({ children }) => (
+export const Grid: React.FC<React.PropsWithChildren> = ({ children }) => (
   <div className="grid">{children}</div>
 );

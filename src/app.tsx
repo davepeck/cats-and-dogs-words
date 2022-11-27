@@ -6,7 +6,7 @@ import { Keyboard } from "./keyboard";
 
 const LENGTH = 5;
 const GUESSES = 6;
-const TARGET = "vivid";
+const TARGET = "exile";
 
 const getRowState = (i: number, iActive: number): RowState => {
   if (i < iActive) {
@@ -74,6 +74,7 @@ export const App: React.FC = () => {
           const clues = clueGrid[i];
           return (
             <Row
+              key={i}
               length={LENGTH}
               state={getRowState(i, iActive)}
               word={word}
